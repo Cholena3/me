@@ -18,7 +18,7 @@ export default function Achievements() {
         className="mb-20"
       >
         <p className="text-[10px] tracking-[0.3em] text-taupe dark:text-cosmos-muted uppercase font-sans mb-4">Progress</p>
-        <h2 className="font-serif text-4xl md:text-5xl text-slate-dark dark:text-cosmos-text">Achievements</h2>
+        <h2 className="font-serif text-4xl md:text-5xl text-slate-dark dark:text-cosmos-text dark:glow-text">Achievements</h2>
       </motion.div>
 
       <div className="grid sm:grid-cols-2 gap-5">
@@ -29,7 +29,7 @@ export default function Achievements() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
-            className={`rounded-card p-7 border border-warm/20 dark:border-cosmos-border border-l-[3px] ${a.accent} bg-surface dark:bg-cosmos-card hover:shadow-md hover:shadow-warm/10 dark:hover:shadow-nebula/5 transition-all duration-500`}
+            className={`rounded-card p-7 border border-warm/20 dark:border-cosmos-border border-l-[3px] ${a.accent} bg-surface dark:bg-cosmos-card hover:shadow-md hover:shadow-warm/10 dark:hover:shadow-nebula/5 transition-all duration-500 glass-card glow-border`}
           >
             <h3 className="font-serif text-base text-slate-dark dark:text-cosmos-text mb-2">{a.title}</h3>
             <p className="text-xs text-taupe dark:text-cosmos-muted font-sans font-light leading-relaxed">{a.desc}</p>
@@ -42,7 +42,7 @@ export default function Achievements() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="mt-10 rounded-card p-8 bg-slate-dark dark:bg-nebula/20 dark:border dark:border-nebula/20 text-white"
+        className="mt-10 rounded-card p-8 bg-slate-dark dark:bg-nebula/20 dark:border dark:border-nebula/20 text-white dark:glow-accent"
       >
         <p className="text-[10px] tracking-[0.3em] text-white/40 uppercase font-sans mb-4">Currently building</p>
         <h3 className="font-serif text-xl mb-3">Work Management System for ITDA</h3>

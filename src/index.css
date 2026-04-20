@@ -14,15 +14,13 @@ body {
 }
 
 body { background-color: #FAF8F5; color: #475569; }
-.dark body, .dark { background-color: #0B0D17; color: #E2E8F0; }
+.dark body, .dark { background-color: #07080F; color: #E2E8F0; }
 
-/* ===== SCROLLBAR — day mode ===== */
+/* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: #FAF8F5; }
 ::-webkit-scrollbar-thumb { background: #D4C5B9; border-radius: 10px; }
-
-/* ===== SCROLLBAR — night mode: glowing gradient ===== */
-.dark ::-webkit-scrollbar-track { background: #0B0D17; }
+.dark ::-webkit-scrollbar-track { background: #07080F; }
 .dark ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background: linear-gradient(180deg, #7C3AED, #818CF8, #34D399, #FCD34D, #7C3AED);
@@ -34,6 +32,7 @@ body { background-color: #FAF8F5; color: #475569; }
   50% { background-position: 0% 100%; }
 }
 
+/* ===== LAYOUT ===== */
 .masonry-grid { display: flex; margin-left: -24px; width: auto; }
 .masonry-grid_column { padding-left: 24px; background-clip: padding-box; }
 
@@ -43,61 +42,86 @@ body { background-color: #FAF8F5; color: #475569; }
 }
 .animate-drift { animation: drift 12s ease-in-out infinite; }
 
-.modal-backdrop {
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+.modal-backdrop { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+
+.editorial-line { height: 1px; background: linear-gradient(90deg, transparent, #D4C5B9, transparent); }
+.dark .editorial-line { height: 1px; background: linear-gradient(90deg, transparent, rgba(124,58,237,0.2), transparent); }
+
+/* ===== GLASSMORPHISM ===== */
+.dark .glass-card {
+  background: rgba(12, 15, 34, 0.55) !important;
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(124, 58, 237, 0.12) !important;
+  box-shadow:
+    0 8px 32px rgba(124, 58, 237, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    inset 0 -1px 0 rgba(124, 58, 237, 0.05);
 }
 
-.editorial-line {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #D4C5B9, transparent);
-}
-.dark .editorial-line {
-  background: linear-gradient(90deg, transparent, #2D3258, transparent);
-}
-
-/* ===== GLASSMORPHISM for dark mode cards ===== */
-.dark .glass {
-  background: rgba(18, 21, 42, 0.5) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-color: rgba(45, 50, 88, 0.5) !important;
-  box-shadow: 0 4px 30px rgba(124, 58, 237, 0.05), inset 0 1px 0 rgba(255,255,255,0.03);
-}
-
-/* ===== GLOW EFFECTS for dark mode ===== */
+/* ===== GLOW EFFECTS ===== */
 .dark .glow-text {
-  text-shadow: 0 0 20px rgba(124, 58, 237, 0.3), 0 0 40px rgba(124, 58, 237, 0.1);
+  text-shadow: 0 0 30px rgba(124, 58, 237, 0.4), 0 0 60px rgba(124, 58, 237, 0.15), 0 0 100px rgba(124, 58, 237, 0.05);
 }
-.dark .glow-box {
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.08), 0 0 60px rgba(124, 58, 237, 0.03);
+.dark .glow-border {
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.1), 0 0 30px rgba(124, 58, 237, 0.05);
+}
+.dark .glow-accent {
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.15), 0 0 40px rgba(124, 58, 237, 0.05);
 }
 
-/* ===== NIGHT MODE ANIMATIONS ===== */
-@keyframes twinkleFast {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.9; }
+/* ===== METEOR ANIMATION ===== */
+.meteor {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  z-index: 3;
+  animation: meteorFly 3s ease-in infinite;
 }
-@keyframes twinkleMed {
-  0%, 100% { opacity: 0.15; }
-  50% { opacity: 0.8; }
+.meteor::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(to left, rgba(255,255,255,0.6), transparent);
+}
+
+@keyframes meteorFly {
+  0% { opacity: 0; transform: translate(0, 0) rotate(215deg); }
+  5% { opacity: 1; }
+  60% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-400px, 400px) rotate(215deg); }
+}
+
+/* ===== NEBULA DRIFT ===== */
+@keyframes nebDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.18; }
+  33% { transform: translate(30px, -20px) scale(1.1); opacity: 0.25; }
+  66% { transform: translate(-15px, 15px) scale(0.95); opacity: 0.15; }
+}
+@keyframes nebDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.12; }
+  50% { transform: translate(-25px, 20px) scale(1.15); opacity: 0.2; }
+}
+
+/* ===== AURORA ===== */
+@keyframes auroraShift {
+  0%, 100% { transform: translateX(0) scaleY(1); opacity: 1; }
+  25% { transform: translateX(40px) scaleY(1.15); opacity: 0.8; }
+  50% { transform: translateX(-30px) scaleY(0.9); opacity: 1; }
+  75% { transform: translateX(20px) scaleY(1.1); opacity: 0.85; }
+}
+
+/* ===== STAR TWINKLE (for fallback) ===== */
+@keyframes twinkleFast {
+  0%, 100% { opacity: 0.2; } 50% { opacity: 0.9; }
 }
 @keyframes twinkleSlow {
-  0%, 100% { opacity: 0.1; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.3); }
-}
-@keyframes nebPulse1 {
-  0%, 100% { opacity: 0.6; transform: scale(1) translate(0, 0); }
-  33% { opacity: 0.9; transform: scale(1.08) translate(10px, -5px); }
-  66% { opacity: 0.7; transform: scale(0.95) translate(-5px, 8px); }
-}
-@keyframes nebPulse2 {
-  0%, 100% { opacity: 0.5; transform: scale(1) translate(0, 0); }
-  50% { opacity: 0.85; transform: scale(1.12) translate(-8px, 6px); }
-}
-@keyframes auroraShift {
-  0%, 100% { transform: translateX(0) scaleY(1); opacity: 0.3; }
-  25% { transform: translateX(30px) scaleY(1.1); opacity: 0.4; }
-  50% { transform: translateX(-20px) scaleY(0.9); opacity: 0.25; }
-  75% { transform: translateX(15px) scaleY(1.05); opacity: 0.35; }
+  0%, 100% { opacity: 0.1; transform: scale(1); } 50% { opacity: 1; transform: scale(1.3); }
 }

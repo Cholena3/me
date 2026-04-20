@@ -37,7 +37,7 @@ const breakpoints = { default: 3, 768: 2, 500: 1 }
 function Card({ item, dark }) {
   const textCls = item.light ? 'text-white' : (dark ? 'text-cosmos-text' : 'text-slate-dark')
   const subCls = item.light ? 'text-white/50' : (dark ? 'text-cosmos-muted' : 'text-taupe')
-  const border = dark ? 'border border-cosmos-border' : ''
+  const border = dark ? 'border border-cosmos-border glass-card glow-border' : ''
 
   if (item.type === 'music') {
     return (
@@ -104,7 +104,7 @@ export default function Moodboard() {
         className="mb-16"
       >
         <p className="text-[10px] tracking-[0.3em] text-taupe dark:text-cosmos-muted uppercase font-sans mb-4">Vibes</p>
-        <h2 className="font-serif text-4xl md:text-5xl text-slate-dark dark:text-cosmos-text">Moodboard</h2>
+        <h2 className="font-serif text-4xl md:text-5xl text-slate-dark dark:text-cosmos-text dark:glow-text">Moodboard</h2>
         <p className="text-sm text-taupe dark:text-cosmos-muted font-sans font-light mt-4">A collage of everything that makes me, me.</p>
       </motion.div>
 

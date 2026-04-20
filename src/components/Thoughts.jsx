@@ -30,7 +30,7 @@ export default function Thoughts() {
         className="mb-20"
       >
         <p className="text-[10px] tracking-[0.3em] text-taupe dark:text-cosmos-muted uppercase font-sans mb-4">Reflections</p>
-        <h2 className="font-serif text-4xl md:text-5xl text-slate-dark dark:text-cosmos-text">Thoughts</h2>
+        <h2 className="font-serif text-4xl md:text-5xl text-slate-dark dark:text-cosmos-text dark:glow-text">Thoughts</h2>
       </motion.div>
 
       <div className="space-y-4">
@@ -41,7 +41,7 @@ export default function Thoughts() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.06 }}
-            className={`rounded-card p-6 bg-surface dark:bg-cosmos-card border border-warm/15 dark:border-cosmos-border border-l-[3px] ${accents[i % accents.length]} hover:shadow-md hover:shadow-warm/10 dark:hover:shadow-nebula/5 transition-all duration-500`}
+            className={`rounded-card p-6 bg-surface dark:bg-cosmos-card border border-warm/15 dark:border-cosmos-border border-l-[3px] ${accents[i % accents.length]} hover:shadow-md hover:shadow-warm/10 dark:hover:shadow-nebula/5 transition-all duration-500 glass-card glow-border`}
           >
             <p className="text-sm text-slate dark:text-cosmos-text font-sans font-light leading-relaxed">{t.text}</p>
             <p className="text-[10px] text-taupe/50 dark:text-cosmos-muted/50 font-sans mt-3 tracking-wide">{t.date}</p>

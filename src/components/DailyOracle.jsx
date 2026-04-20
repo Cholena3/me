@@ -44,7 +44,7 @@ export default function DailyOracle() {
         transition={{ duration: 0.8 }}
         className={`text-center rounded-card p-10 border relative overflow-hidden ${
           darkMode
-            ? 'bg-cosmos-card/60 backdrop-blur-md border-cosmos-border/50 shadow-lg shadow-nebula/5'
+            ? 'bg-cosmos-card/60 backdrop-blur-md border-cosmos-border/50 shadow-lg shadow-nebula/5 glass-card glow-border'
             : 'bg-surface border-warm/20 shadow-md shadow-warm/10'
         }`}
       >

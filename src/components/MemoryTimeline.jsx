@@ -16,7 +16,7 @@ export default function MemoryTimeline() {
       >
         <div>
           <p className="text-[10px] tracking-[0.3em] text-taupe dark:text-cosmos-muted uppercase font-sans mb-4">Journal</p>
-          <h2 className="font-serif text-4xl md:text-5xl text-slate-dark dark:text-cosmos-text">Timeline</h2>
+          <h2 className="font-serif text-4xl md:text-5xl text-slate-dark dark:text-cosmos-text dark:glow-text">Timeline</h2>
         </div>
         <button
           onClick={() => setShowAddMemory(true)}
@@ -38,10 +38,12 @@ export default function MemoryTimeline() {
               transition={{ duration: 0.5, delay: i * 0.08 }}
               className="relative pl-12"
             >
-              <div className="absolute left-0 top-2 w-[11px] h-[11px] rounded-full border-2 border-rose dark:border-nebula bg-base dark:bg-cosmos" />
-              <p className="text-[10px] tracking-[0.2em] text-taupe dark:text-cosmos-muted uppercase font-sans mb-3">{m.date}</p>
-              <h3 className="font-serif text-lg text-slate-dark dark:text-cosmos-text mb-2">{m.title}</h3>
-              <p className="text-sm text-slate dark:text-cosmos-muted font-sans font-light leading-relaxed">{m.text}</p>
+              <div className="absolute left-0 top-2 w-[11px] h-[11px] rounded-full border-2 border-rose dark:border-nebula bg-base dark:bg-cosmos dark:glow-accent" />
+              <div className="bg-surface dark:bg-transparent rounded-card p-5 border border-warm/10 dark:border-transparent glass-card glow-border">
+                <p className="text-[10px] tracking-[0.2em] text-taupe dark:text-cosmos-muted uppercase font-sans mb-3">{m.date}</p>
+                <h3 className="font-serif text-lg text-slate-dark dark:text-cosmos-text mb-2">{m.title}</h3>
+                <p className="text-sm text-slate dark:text-cosmos-muted font-sans font-light leading-relaxed">{m.text}</p>
+              </div>
             </motion.div>
           ))}
         </div>

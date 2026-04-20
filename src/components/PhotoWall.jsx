@@ -19,7 +19,7 @@ export default function PhotoWall() {
         className="mb-16"
       >
         <p className="text-[10px] tracking-[0.3em] text-taupe dark:text-cosmos-muted uppercase font-sans mb-4">Collection</p>
-        <h2 className="font-serif text-4xl md:text-5xl text-slate-dark dark:text-cosmos-text">Photo Wall</h2>
+        <h2 className="font-serif text-4xl md:text-5xl text-slate-dark dark:text-cosmos-text dark:glow-text">Photo Wall</h2>
       </motion.div>
 
       <div className="flex flex-wrap items-center gap-2 mb-12">
@@ -69,7 +69,7 @@ export default function PhotoWall() {
                 className="mb-6 group cursor-pointer"
                 onClick={() => setSelectedPhoto(photo)}
               >
-                <div className="relative overflow-hidden rounded-card bg-surface dark:bg-cosmos-card hover:shadow-lg hover:shadow-warm/20 dark:hover:shadow-nebula/10 transition-all duration-600">
+                <div className="relative overflow-hidden rounded-card bg-surface dark:bg-cosmos-card hover:shadow-lg hover:shadow-warm/20 dark:hover:shadow-nebula/10 transition-all duration-600 glass-card glow-border">
                   <img src={photo.src} alt={photo.caption} className="w-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-dark/60 dark:from-cosmos/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-5">
                     <div>

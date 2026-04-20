@@ -36,7 +36,7 @@ export default function AboutMe() {
         className="mb-20"
       >
         <p className="text-[10px] tracking-[0.3em] text-taupe dark:text-cosmos-muted uppercase font-sans mb-4">About</p>
-        <h2 className="font-serif text-4xl md:text-5xl text-slate-dark dark:text-cosmos-text">Who I am</h2>
+        <h2 className="font-serif text-4xl md:text-5xl text-slate-dark dark:text-cosmos-text dark:glow-text">Who I am</h2>
       </motion.div>
 
       <motion.div
@@ -44,7 +44,7 @@ export default function AboutMe() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="max-w-2xl mb-24 bg-surface/80 dark:bg-transparent rounded-card p-8 border border-warm/10 dark:border-cosmos-border/30 glass"
+        className="max-w-2xl mb-24 bg-surface/80 dark:bg-transparent rounded-card p-8 border border-warm/10 dark:border-cosmos-border/30 glass-card"
       >
         <p className="font-sans text-[15px] leading-[2] text-slate dark:text-cosmos-muted font-light">
           I'm <span className="text-rose dark:text-nebula-light font-normal">Cho</span> — a 20-year-old B.Tech student, Aries,
@@ -90,7 +90,7 @@ export default function AboutMe() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="rounded-card p-6 bg-champagne-light dark:bg-cosmos-card border border-warm/20 dark:border-cosmos-border"
+              className="rounded-card p-6 bg-champagne-light dark:bg-cosmos-card border border-warm/20 dark:border-cosmos-border glass-card glow-border"
             >
               <p className="text-[10px] tracking-[0.2em] uppercase font-sans mb-2 text-taupe dark:text-cosmos-muted opacity-60">{f.category}</p>
               <p className="text-sm font-sans leading-relaxed text-slate-dark dark:text-cosmos-text">{f.items}</p>
