@@ -30,6 +30,21 @@ export function AppProvider({ children }) {
   const [showUpload, setShowUpload] = useState(false)
   const [showAddMemory, setShowAddMemory] = useState(false)
   const [secretUnlocked, setSecretUnlocked] = useState(false)
+  const [privateNotes, setPrivateNotes] = useState([
+    { id: 1, text: "Reminder: You don't have to have it all figured out. You just have to keep showing up. Carpe diem, always." },
+    { id: 2, text: 'Goals for this year: Ship the ITDA project. Improve DSA consistency. Read 12 books. Visit Paris (manifesting). Take better care of myself.' },
+    { id: 3, text: 'The person I\'m becoming is worth the discomfort of growth. Keep dancing, keep laughing, keep building.' },
+    { id: 4, text: 'Things that make me happy: home-made food, Taylor Swift on full volume, chocolate at midnight, and people who match my effort.' },
+    { id: 5, text: "Dear future Cho — I hope you made it to Paris, shipped something you're proud of, and still look up at the stars. Stay soft." },
+  ])
+
+  const addPrivateNote = useCallback((text) => {
+    setPrivateNotes(prev => [{ id: Date.now(), text }, ...prev])
+  }, [])
+
+  const deletePrivateNote = useCallback((id) => {
+    setPrivateNotes(prev => prev.filter(n => n.id !== id))
+  }, [])
   const [darkMode, setDarkMode] = useState(false)
 
   const addPhoto = useCallback((photo) => {
@@ -56,6 +71,7 @@ export function AppProvider({ children }) {
       showUpload, setShowUpload,
       showAddMemory, setShowAddMemory,
       secretUnlocked, setSecretUnlocked,
+      privateNotes, addPrivateNote, deletePrivateNote,
       darkMode, setDarkMode,
       addPhoto, addMemory, addThought,
     }}>
