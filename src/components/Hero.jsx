@@ -20,7 +20,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.6 }}
-          className="font-serif text-6xl md:text-8xl text-slate-dark dark:text-cosmos-text leading-[1.05]"
+          className="font-serif text-6xl md:text-8xl text-slate-dark dark:text-cosmos-text leading-[1.05] dark:glow-text"
         >
           Cholena
         </motion.h1>

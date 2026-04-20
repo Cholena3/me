@@ -16,11 +16,23 @@ body {
 body { background-color: #FAF8F5; color: #475569; }
 .dark body, .dark { background-color: #0B0D17; color: #E2E8F0; }
 
-::-webkit-scrollbar { width: 4px; }
+/* ===== SCROLLBAR — day mode ===== */
+::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: #FAF8F5; }
 ::-webkit-scrollbar-thumb { background: #D4C5B9; border-radius: 10px; }
+
+/* ===== SCROLLBAR — night mode: glowing gradient ===== */
 .dark ::-webkit-scrollbar-track { background: #0B0D17; }
-.dark ::-webkit-scrollbar-thumb { background: #2D3258; }
+.dark ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: linear-gradient(180deg, #7C3AED, #818CF8, #34D399, #FCD34D, #7C3AED);
+  background-size: 100% 300%;
+  animation: scrollGlow 6s ease infinite;
+}
+@keyframes scrollGlow {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 0% 100%; }
+}
 
 .masonry-grid { display: flex; margin-left: -24px; width: auto; }
 .masonry-grid_column { padding-left: 24px; background-clip: padding-box; }
@@ -44,9 +56,24 @@ body { background-color: #FAF8F5; color: #475569; }
   background: linear-gradient(90deg, transparent, #2D3258, transparent);
 }
 
-/* ===== NIGHT MODE ANIMATIONS ===== */
+/* ===== GLASSMORPHISM for dark mode cards ===== */
+.dark .glass {
+  background: rgba(18, 21, 42, 0.5) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: rgba(45, 50, 88, 0.5) !important;
+  box-shadow: 0 4px 30px rgba(124, 58, 237, 0.05), inset 0 1px 0 rgba(255,255,255,0.03);
+}
 
-/* Star twinkle — 3 speeds */
+/* ===== GLOW EFFECTS for dark mode ===== */
+.dark .glow-text {
+  text-shadow: 0 0 20px rgba(124, 58, 237, 0.3), 0 0 40px rgba(124, 58, 237, 0.1);
+}
+.dark .glow-box {
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.08), 0 0 60px rgba(124, 58, 237, 0.03);
+}
+
+/* ===== NIGHT MODE ANIMATIONS ===== */
 @keyframes twinkleFast {
   0%, 100% { opacity: 0.2; }
   50% { opacity: 0.9; }
@@ -59,15 +86,11 @@ body { background-color: #FAF8F5; color: #475569; }
   0%, 100% { opacity: 0.1; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.3); }
 }
-
-/* Shooting star */
 @keyframes shootingStar {
   0% { transform: translateX(0) translateY(0); opacity: 1; width: 2px; }
   30% { opacity: 1; width: 40px; }
   100% { transform: translateX(350px) translateY(200px); opacity: 0; width: 0px; }
 }
-
-/* Nebula pulses — 2 variants */
 @keyframes nebPulse1 {
   0%, 100% { opacity: 0.6; transform: scale(1) translate(0, 0); }
   33% { opacity: 0.9; transform: scale(1.08) translate(10px, -5px); }
@@ -77,25 +100,9 @@ body { background-color: #FAF8F5; color: #475569; }
   0%, 100% { opacity: 0.5; transform: scale(1) translate(0, 0); }
   50% { opacity: 0.85; transform: scale(1.12) translate(-8px, 6px); }
 }
-
-/* Aurora shimmer */
 @keyframes auroraShift {
   0%, 100% { transform: translateX(0) scaleY(1); opacity: 0.3; }
   25% { transform: translateX(30px) scaleY(1.1); opacity: 0.4; }
   50% { transform: translateX(-20px) scaleY(0.9); opacity: 0.25; }
   75% { transform: translateX(15px) scaleY(1.05); opacity: 0.35; }
-}
-
-/* Galaxy rotation */
-@keyframes galaxySpin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* Cosmic dust drift */
-@keyframes dustDrift {
-  0% { transform: translate(0, 0); opacity: 0; }
-  10% { opacity: 0.3; }
-  90% { opacity: 0.3; }
-  100% { transform: translate(100px, -60px); opacity: 0; }
 }

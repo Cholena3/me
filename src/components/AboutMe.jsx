@@ -44,7 +44,7 @@ export default function AboutMe() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="max-w-2xl mb-24"
+        className="max-w-2xl mb-24 bg-surface/80 dark:bg-transparent rounded-card p-8 border border-warm/10 dark:border-cosmos-border/30 glass"
       >
         <p className="font-sans text-[15px] leading-[2] text-slate dark:text-cosmos-muted font-light">
           I'm <span className="text-rose dark:text-nebula-light font-normal">Cho</span> — a 20-year-old B.Tech student, Aries,
