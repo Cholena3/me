@@ -19,7 +19,6 @@ import Thoughts from './components/Thoughts'
 import SecretSection from './components/SecretSection'
 import Contact from './components/Contact'
 import AdminToggle from './components/AdminToggle'
-import BackToTop from './components/BackToTop'
 import { WavyDivider } from './components/WaveDivider'
 
 function AppShell() {
@@ -57,7 +56,6 @@ function AppShell() {
         <AddMemoryModal />
         <ThemeToggle />
         <AdminToggle />
-        <BackToTop />
       </div>
     </div>
   )

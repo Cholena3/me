@@ -58,14 +58,14 @@ export default function StarField() {
         </div>
       )}
 
-      {/* METEORS — diagonal, colorful */}
-      <div className="meteor dir-lr gold" style={{ top: '-2%', left: '15%', animationDelay: '0s' }}><div className="head" /><div className="tail" /></div>
-      <div className="meteor dir-rl blue" style={{ top: '-2%', left: '75%', animationDelay: '3s' }}><div className="head" /><div className="tail" /></div>
-      <div className="meteor dir-lr white" style={{ top: '-2%', left: '40%', animationDelay: '6s' }}><div className="head" /><div className="tail" /></div>
-      <div className="meteor dir-rl violet" style={{ top: '-2%', left: '60%', animationDelay: '9s' }}><div className="head" /><div className="tail" /></div>
-      <div className="meteor dir-lr blue" style={{ top: '-2%', left: '85%', animationDelay: '12s', animationDuration: '3.5s' }}><div className="head" /><div className="tail" /></div>
-      <div className="meteor dir-rl gold" style={{ top: '-2%', left: '25%', animationDelay: '16s' }}><div className="head" /><div className="tail" /></div>
-      <div className="meteor dir-lr violet" style={{ top: '-2%', left: '55%', animationDelay: '20s', animationDuration: '2.5s' }}><div className="head" /><div className="tail" /></div>
+      {/* METEORS — diagonal top-left to bottom-right, colorful */}
+      <div className="meteor dir-lr gold" style={{ top: '-2%', left: '5%', animationDelay: '0s' }}><div className="head" /><div className="tail" /></div>
+      <div className="meteor dir-lr blue" style={{ top: '-2%', left: '20%', animationDelay: '3s' }}><div className="head" /><div className="tail" /></div>
+      <div className="meteor dir-lr white" style={{ top: '-2%', left: '35%', animationDelay: '7s' }}><div className="head" /><div className="tail" /></div>
+      <div className="meteor dir-lr violet" style={{ top: '-2%', left: '10%', animationDelay: '11s' }}><div className="head" /><div className="tail" /></div>
+      <div className="meteor dir-lr blue" style={{ top: '-2%', left: '50%', animationDelay: '15s', animationDuration: '3.5s' }}><div className="head" /><div className="tail" /></div>
+      <div className="meteor dir-lr gold" style={{ top: '-2%', left: '25%', animationDelay: '19s' }}><div className="head" /><div className="tail" /></div>
+      <div className="meteor dir-lr violet" style={{ top: '-2%', left: '45%', animationDelay: '23s', animationDuration: '2.5s' }}><div className="head" /><div className="tail" /></div>
 
       {/* CONSTELLATIONS */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 3, opacity: 0.15 }}>

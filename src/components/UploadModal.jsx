@@ -1,27 +1,51 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useRef } from 'react'
 import { useApp } from '../store'
-import { FiX, FiUpload, FiImage } from 'react-icons/fi'
+import { uploadImage } from '../supabase'
+import { FiX, FiUpload, FiImage, FiLoader } from 'react-icons/fi'
 
 const tags = ['life', 'college', 'friends', 'personal', 'achievements']
 
 export default function UploadModal() {
   const { showUpload, setShowUpload, addPhoto } = useApp()
   const [preview, setPreview] = useState(null)
+  const [file, setFile] = useState(null)
   const [caption, setCaption] = useState('')
   const [tag, setTag] = useState('life')
   const [notes, setNotes] = useState('')
   const [date, setDate] = useState(new Date().toISOString().split('T')[0])
+  const [uploading, setUploading] = useState(false)
   const fileRef = useRef()
 
   const handleFile = (e) => {
-    const file = e.target.files[0]
-    if (file) { const r = new FileReader(); r.onloadend = () => setPreview(r.result); r.readAsDataURL(file) }
+    const f = e.target.files[0]
+    if (f) {
+      setFile(f)
+      const reader = new FileReader()
+      reader.onloadend = () => setPreview(reader.result)
+      reader.readAsDataURL(f)
+    }
   }
-  const handleSubmit = () => {
+
+  const handleSubmit = async () => {
     if (!preview || !caption) return
-    addPhoto({ src: preview, caption, tag, notes, date })
-    setPreview(null); setCaption(''); setNotes(''); setTag('life'); setShowUpload(false)
+    setUploading(true)
+
+    let src = preview // fallback to base64
+    try {
+      // Try Supabase upload first
+      if (file) {
+        src = await uploadImage(file)
+      }
+    } catch (e) {
+      // Supabase not configured or failed — use base64 fallback
+      console.warn('Supabase upload failed, using local storage:', e.message)
+    }
+
+    addPhoto({ src, caption, tag, notes, date })
+    setPreview(null); setFile(null); setCaption(''); setNotes(''); setTag('life')
+    setUploading(false)
+    setShowUpload(false)
   }
 
   const ic = 'w-full px-4 py-3 rounded-btn border border-warm/30 dark:border-cosmos-border focus:border-rose dark:focus:border-nebula focus:outline-none text-sm font-sans bg-champagne-light/20 dark:bg-cosmos/50 dark:text-cosmos-text font-light transition-colors'
@@ -60,9 +84,9 @@ export default function UploadModal() {
               ))}
             </div>
             <textarea placeholder="Notes (optional)" value={notes} onChange={e => setNotes(e.target.value)} rows={2} className={`${ic} mb-5 resize-none`} />
-            <button onClick={handleSubmit} disabled={!preview || !caption}
+            <button onClick={handleSubmit} disabled={!preview || !caption || uploading}
               className="w-full py-3 rounded-btn bg-slate-dark dark:bg-nebula text-white text-[11px] font-sans tracking-[0.1em] uppercase hover:bg-rose dark:hover:bg-nebula/80 transition-colors disabled:opacity-30 flex items-center justify-center gap-2">
-              <FiUpload className="w-3.5 h-3.5" /> Add to wall
+              {uploading ? <><FiLoader className="w-3.5 h-3.5 animate-spin" /> Uploading...</> : <><FiUpload className="w-3.5 h-3.5" /> Add to wall</>}
             </button>
           </motion.div>
         </motion.div>
