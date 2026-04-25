@@ -18,6 +18,7 @@ import Achievements from './components/Achievements'
 import Thoughts from './components/Thoughts'
 import SecretSection from './components/SecretSection'
 import Contact from './components/Contact'
+import BackToTop from './components/BackToTop'
 import { WavyDivider } from './components/WaveDivider'
 
 function AppShell() {
@@ -54,6 +55,7 @@ function AppShell() {
         <UploadModal />
         <AddMemoryModal />
         <ThemeToggle />
+        <BackToTop />
       </div>
     </div>
   )

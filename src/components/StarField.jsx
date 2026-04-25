@@ -39,11 +39,11 @@ export default function StarField() {
       <div className="absolute inset-0 bg-gradient-to-b from-[#07080F] via-[#0C0F22] to-[#07080F]" />
 
       {/* NEBULA CLOUDS — high opacity, very visible */}
-      <div className="nebula-cloud absolute w-[800px] h-[800px] -top-[15%] -left-[10%] rounded-full bg-purple-600 opacity-[0.18] blur-[100px]" style={{ animation: 'nebDrift1 16s ease-in-out infinite' }} />
-      <div className="nebula-cloud absolute w-[700px] h-[700px] top-[25%] -right-[15%] rounded-full bg-indigo-500 opacity-[0.12] blur-[100px]" style={{ animation: 'nebDrift2 20s ease-in-out infinite' }} />
-      <div className="nebula-cloud absolute w-[600px] h-[600px] bottom-[0%] left-[15%] rounded-full bg-blue-500 opacity-[0.10] blur-[90px]" style={{ animation: 'nebDrift1 18s ease-in-out infinite', animationDelay: '4s' }} />
-      <div className="nebula-cloud absolute w-[500px] h-[500px] top-[45%] left-[40%] rounded-full bg-fuchsia-600 opacity-[0.08] blur-[90px]" style={{ animation: 'nebDrift2 22s ease-in-out infinite', animationDelay: '6s' }} />
-      <div className="nebula-cloud absolute w-[400px] h-[400px] top-[10%] right-[20%] rounded-full bg-emerald-500 opacity-[0.06] blur-[80px]" style={{ animation: 'nebDrift1 14s ease-in-out infinite', animationDelay: '8s' }} />
+      <div className="nebula-cloud absolute w-[800px] h-[800px] -top-[15%] -left-[10%] rounded-full bg-purple-600 opacity-[0.22] blur-[100px]" style={{ animation: 'nebDrift1 16s ease-in-out infinite' }} />
+      <div className="nebula-cloud absolute w-[700px] h-[700px] top-[25%] -right-[15%] rounded-full bg-indigo-500 opacity-[0.15] blur-[100px]" style={{ animation: 'nebDrift2 20s ease-in-out infinite' }} />
+      <div className="nebula-cloud absolute w-[600px] h-[600px] bottom-[0%] left-[15%] rounded-full bg-blue-500 opacity-[0.12] blur-[90px]" style={{ animation: 'nebDrift1 18s ease-in-out infinite', animationDelay: '4s' }} />
+      <div className="nebula-cloud absolute w-[500px] h-[500px] top-[45%] left-[40%] rounded-full bg-fuchsia-600 opacity-[0.10] blur-[90px]" style={{ animation: 'nebDrift2 22s ease-in-out infinite', animationDelay: '6s' }} />
+      <div className="nebula-cloud absolute w-[400px] h-[400px] top-[10%] right-[20%] rounded-full bg-emerald-500 opacity-[0.07] blur-[80px]" style={{ animation: 'nebDrift1 14s ease-in-out infinite', animationDelay: '8s' }} />
 
       {/* AURORA BAND */}
       <div className="absolute top-0 left-0 right-0 h-[350px]" style={{
@@ -58,12 +58,14 @@ export default function StarField() {
         </div>
       )}
 
-      {/* METEORS — pure CSS, no broken width animation */}
-      <div className="meteor" style={{ top: '8%', left: '25%', animationDelay: '0s' }} />
-      <div className="meteor" style={{ top: '22%', left: '65%', animationDelay: '4s' }} />
-      <div className="meteor" style={{ top: '45%', left: '10%', animationDelay: '8s' }} />
-      <div className="meteor" style={{ top: '35%', left: '80%', animationDelay: '12s' }} />
-      <div className="meteor" style={{ top: '65%', left: '45%', animationDelay: '16s' }} />
+      {/* METEORS — falling from top-right to bottom-left */}
+      <div className="meteor" style={{ top: '-5%', left: '70%', animationDelay: '0s' }} />
+      <div className="meteor" style={{ top: '-5%', left: '85%', animationDelay: '3.5s' }} />
+      <div className="meteor" style={{ top: '-5%', left: '50%', animationDelay: '7s' }} />
+      <div className="meteor" style={{ top: '-5%', left: '90%', animationDelay: '11s' }} />
+      <div className="meteor" style={{ top: '-5%', left: '30%', animationDelay: '15s' }} />
+      <div className="meteor" style={{ top: '-5%', left: '60%', animationDelay: '19s' }} />
+      <div className="meteor" style={{ top: '-5%', left: '40%', animationDelay: '23s', animationDuration: '3s' }} />
 
       {/* CONSTELLATIONS */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 3, opacity: 0.15 }}>
