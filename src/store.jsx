@@ -2,19 +2,15 @@ import { createContext, useContext, useState, useCallback, useEffect } from 'rea
 
 const AppContext = createContext()
 
-// --- Helpers for localStorage ---
-function load(key, fallback) {
-  try {
-    const raw = localStorage.getItem(key)
-    return raw ? JSON.parse(raw) : fallback
-  } catch { return fallback }
-}
+const ADMIN_PASSWORD = 'cho2026'
 
+function load(key, fallback) {
+  try { const r = localStorage.getItem(key); return r ? JSON.parse(r) : fallback } catch { return fallback }
+}
 function save(key, value) {
   try { localStorage.setItem(key, JSON.stringify(value)) } catch {}
 }
 
-// --- Default data (used only on first visit) ---
 const DEFAULT_PHOTOS = []
 
 const DEFAULT_MEMORIES = [
@@ -42,12 +38,30 @@ const DEFAULT_NOTES = [
   { id: 5, text: "Dear future Cho — I hope you made it to Paris, shipped something you're proud of, and still look up at the stars. Stay soft." },
 ]
 
+const DEFAULT_FAVORITES = [
+  { id: 1, category: 'Series', items: 'Friends · Vampire Diaries · Bridgerton' },
+  { id: 2, category: 'Music', items: 'Taylor Swift · Arijit Singh' },
+  { id: 3, category: 'Comfort', items: 'Home-made food · Chocolates · Coffee' },
+  { id: 4, category: 'Dream', items: 'Paris — someday, definitely' },
+  { id: 5, category: 'Love Language', items: "Efforts — show me, don't tell me" },
+  { id: 6, category: 'Zodiac', items: 'Aries ♈ — passionate, bold, always right' },
+]
+
+const DEFAULT_SONGS = [
+  { id: 1, name: 'Tum Hi Ho', artist: 'Arijit Singh' },
+  { id: 2, name: 'Channa Mereya', artist: 'Arijit Singh' },
+  { id: 3, name: 'Agar Tum Saath Ho', artist: 'Arijit Singh' },
+]
+
 export function AppProvider({ children }) {
   const [photos, setPhotos] = useState(() => load('cho_photos', DEFAULT_PHOTOS))
   const [memories, setMemories] = useState(() => load('cho_memories', DEFAULT_MEMORIES))
   const [thoughts, setThoughts] = useState(() => load('cho_thoughts', DEFAULT_THOUGHTS))
   const [privateNotes, setPrivateNotes] = useState(() => load('cho_notes', DEFAULT_NOTES))
+  const [favorites, setFavorites] = useState(() => load('cho_favs', DEFAULT_FAVORITES))
+  const [songs, setSongs] = useState(() => load('cho_songs', DEFAULT_SONGS))
   const [darkMode, setDarkMode] = useState(() => load('cho_dark', false))
+  const [isAdmin, setIsAdmin] = useState(false)
 
   const [selectedPhoto, setSelectedPhoto] = useState(null)
   const [activeFilter, setActiveFilter] = useState('all')
@@ -55,40 +69,41 @@ export function AppProvider({ children }) {
   const [showAddMemory, setShowAddMemory] = useState(false)
   const [secretUnlocked, setSecretUnlocked] = useState(false)
 
-  // Persist to localStorage on change
   useEffect(() => { save('cho_photos', photos) }, [photos])
   useEffect(() => { save('cho_memories', memories) }, [memories])
   useEffect(() => { save('cho_thoughts', thoughts) }, [thoughts])
   useEffect(() => { save('cho_notes', privateNotes) }, [privateNotes])
+  useEffect(() => { save('cho_favs', favorites) }, [favorites])
+  useEffect(() => { save('cho_songs', songs) }, [songs])
   useEffect(() => { save('cho_dark', darkMode) }, [darkMode])
 
-  const addPhoto = useCallback((photo) => {
-    setPhotos(prev => [{ ...photo, id: Date.now() }, ...prev])
+  const loginAdmin = useCallback((pw) => {
+    if (pw === ADMIN_PASSWORD) { setIsAdmin(true); return true }
+    return false
   }, [])
+  const logoutAdmin = useCallback(() => setIsAdmin(false), [])
 
-  const addMemory = useCallback((memory) => {
-    setMemories(prev => [{ ...memory, id: Date.now() }, ...prev])
-  }, [])
+  const addPhoto = useCallback((p) => setPhotos(prev => [{ ...p, id: Date.now() }, ...prev]), [])
+  const deletePhoto = useCallback((id) => setPhotos(prev => prev.filter(p => p.id !== id)), [])
+  const addMemory = useCallback((m) => setMemories(prev => [{ ...m, id: Date.now() }, ...prev]), [])
+  const deleteMemory = useCallback((id) => setMemories(prev => prev.filter(m => m.id !== id)), [])
+  const addThought = useCallback((t) => setThoughts(prev => [{ ...t, id: Date.now() }, ...prev]), [])
+  const deleteThought = useCallback((id) => setThoughts(prev => prev.filter(t => t.id !== id)), [])
+  const addPrivateNote = useCallback((text) => setPrivateNotes(prev => [{ id: Date.now(), text }, ...prev]), [])
+  const deletePrivateNote = useCallback((id) => setPrivateNotes(prev => prev.filter(n => n.id !== id)), [])
 
-  const addThought = useCallback((thought) => {
-    setThoughts(prev => [{ ...thought, id: Date.now() }, ...prev])
-  }, [])
+  const updateFavorite = useCallback((id, items) => setFavorites(prev => prev.map(f => f.id === id ? { ...f, items } : f)), [])
+  const addFavorite = useCallback((cat, items) => setFavorites(prev => [...prev, { id: Date.now(), category: cat, items }]), [])
+  const deleteFavorite = useCallback((id) => setFavorites(prev => prev.filter(f => f.id !== id)), [])
 
-  const addPrivateNote = useCallback((text) => {
-    setPrivateNotes(prev => [{ id: Date.now(), text }, ...prev])
-  }, [])
+  const addSong = useCallback((name, artist) => setSongs(prev => [...prev, { id: Date.now(), name, artist }]), [])
+  const deleteSong = useCallback((id) => setSongs(prev => prev.filter(s => s.id !== id)), [])
 
-  const deletePrivateNote = useCallback((id) => {
-    setPrivateNotes(prev => prev.filter(n => n.id !== id))
-  }, [])
-
-  const filteredPhotos = activeFilter === 'all'
-    ? photos
-    : photos.filter(p => p.tag === activeFilter)
+  const filteredPhotos = activeFilter === 'all' ? photos : photos.filter(p => p.tag === activeFilter)
 
   return (
     <AppContext.Provider value={{
-      photos, filteredPhotos, memories, thoughts,
+      photos, filteredPhotos, memories, thoughts, favorites, songs,
       selectedPhoto, setSelectedPhoto,
       activeFilter, setActiveFilter,
       showUpload, setShowUpload,
@@ -96,7 +111,12 @@ export function AppProvider({ children }) {
       secretUnlocked, setSecretUnlocked,
       privateNotes, addPrivateNote, deletePrivateNote,
       darkMode, setDarkMode,
-      addPhoto, addMemory, addThought,
+      isAdmin, loginAdmin, logoutAdmin,
+      addPhoto, deletePhoto,
+      addMemory, deleteMemory,
+      addThought, deleteThought,
+      updateFavorite, addFavorite, deleteFavorite,
+      addSong, deleteSong,
     }}>
       {children}
     </AppContext.Provider>

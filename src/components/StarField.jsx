@@ -38,12 +38,12 @@ export default function StarField() {
       {/* Base gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#07080F] via-[#0C0F22] to-[#07080F]" />
 
-      {/* NEBULA CLOUDS — high opacity, very visible */}
-      <div className="nebula-cloud absolute w-[800px] h-[800px] -top-[15%] -left-[10%] rounded-full bg-purple-600 opacity-[0.22] blur-[100px]" style={{ animation: 'nebDrift1 16s ease-in-out infinite' }} />
-      <div className="nebula-cloud absolute w-[700px] h-[700px] top-[25%] -right-[15%] rounded-full bg-indigo-500 opacity-[0.15] blur-[100px]" style={{ animation: 'nebDrift2 20s ease-in-out infinite' }} />
-      <div className="nebula-cloud absolute w-[600px] h-[600px] bottom-[0%] left-[15%] rounded-full bg-blue-500 opacity-[0.12] blur-[90px]" style={{ animation: 'nebDrift1 18s ease-in-out infinite', animationDelay: '4s' }} />
-      <div className="nebula-cloud absolute w-[500px] h-[500px] top-[45%] left-[40%] rounded-full bg-fuchsia-600 opacity-[0.10] blur-[90px]" style={{ animation: 'nebDrift2 22s ease-in-out infinite', animationDelay: '6s' }} />
-      <div className="nebula-cloud absolute w-[400px] h-[400px] top-[10%] right-[20%] rounded-full bg-emerald-500 opacity-[0.07] blur-[80px]" style={{ animation: 'nebDrift1 14s ease-in-out infinite', animationDelay: '8s' }} />
+      {/* NEBULA CLOUDS — balanced colors, not too purple */}
+      <div className="nebula-cloud absolute w-[700px] h-[700px] -top-[15%] -left-[10%] rounded-full bg-indigo-600 opacity-[0.10] blur-[120px]" style={{ animation: 'nebDrift1 16s ease-in-out infinite' }} />
+      <div className="nebula-cloud absolute w-[600px] h-[600px] top-[25%] -right-[15%] rounded-full bg-blue-500 opacity-[0.09] blur-[110px]" style={{ animation: 'nebDrift2 20s ease-in-out infinite' }} />
+      <div className="nebula-cloud absolute w-[500px] h-[500px] bottom-[0%] left-[15%] rounded-full bg-cyan-500 opacity-[0.07] blur-[100px]" style={{ animation: 'nebDrift1 18s ease-in-out infinite', animationDelay: '4s' }} />
+      <div className="nebula-cloud absolute w-[450px] h-[450px] top-[45%] left-[40%] rounded-full bg-rose-500 opacity-[0.06] blur-[100px]" style={{ animation: 'nebDrift2 22s ease-in-out infinite', animationDelay: '6s' }} />
+      <div className="nebula-cloud absolute w-[400px] h-[400px] top-[10%] right-[20%] rounded-full bg-emerald-500 opacity-[0.05] blur-[90px]" style={{ animation: 'nebDrift1 14s ease-in-out infinite', animationDelay: '8s' }} />
 
       {/* AURORA BAND */}
       <div className="absolute top-0 left-0 right-0 h-[350px]" style={{
@@ -58,14 +58,14 @@ export default function StarField() {
         </div>
       )}
 
-      {/* METEORS — falling from top-right to bottom-left */}
-      <div className="meteor" style={{ top: '-5%', left: '70%', animationDelay: '0s' }} />
-      <div className="meteor" style={{ top: '-5%', left: '85%', animationDelay: '3.5s' }} />
-      <div className="meteor" style={{ top: '-5%', left: '50%', animationDelay: '7s' }} />
-      <div className="meteor" style={{ top: '-5%', left: '90%', animationDelay: '11s' }} />
-      <div className="meteor" style={{ top: '-5%', left: '30%', animationDelay: '15s' }} />
-      <div className="meteor" style={{ top: '-5%', left: '60%', animationDelay: '19s' }} />
-      <div className="meteor" style={{ top: '-5%', left: '40%', animationDelay: '23s', animationDuration: '3s' }} />
+      {/* METEORS — diagonal, colorful */}
+      <div className="meteor dir-lr gold" style={{ top: '-2%', left: '15%', animationDelay: '0s' }}><div className="head" /><div className="tail" /></div>
+      <div className="meteor dir-rl blue" style={{ top: '-2%', left: '75%', animationDelay: '3s' }}><div className="head" /><div className="tail" /></div>
+      <div className="meteor dir-lr white" style={{ top: '-2%', left: '40%', animationDelay: '6s' }}><div className="head" /><div className="tail" /></div>
+      <div className="meteor dir-rl violet" style={{ top: '-2%', left: '60%', animationDelay: '9s' }}><div className="head" /><div className="tail" /></div>
+      <div className="meteor dir-lr blue" style={{ top: '-2%', left: '85%', animationDelay: '12s', animationDuration: '3.5s' }}><div className="head" /><div className="tail" /></div>
+      <div className="meteor dir-rl gold" style={{ top: '-2%', left: '25%', animationDelay: '16s' }}><div className="head" /><div className="tail" /></div>
+      <div className="meteor dir-lr violet" style={{ top: '-2%', left: '55%', animationDelay: '20s', animationDuration: '2.5s' }}><div className="head" /><div className="tail" /></div>
 
       {/* CONSTELLATIONS */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 3, opacity: 0.15 }}>

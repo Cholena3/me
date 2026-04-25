@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { useApp } from '../store'
-import { FiPlus, FiX } from 'react-icons/fi'
+import { FiPlus, FiX, FiTrash2 } from 'react-icons/fi'
 
 const accents = [
   'border-l-rose dark:border-l-nebula', 'border-l-dusty dark:border-l-stellar',
@@ -10,7 +10,7 @@ const accents = [
 ]
 
 export default function Thoughts() {
-  const { thoughts, addThought } = useApp()
+  const { thoughts, addThought, deleteThought, isAdmin } = useApp()
   const [showForm, setShowForm] = useState(false)
   const [text, setText] = useState('')
 
@@ -41,10 +41,15 @@ export default function Thoughts() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.06 }}
-            className={`rounded-card p-6 bg-surface dark:bg-cosmos-card border border-warm/15 dark:border-cosmos-border border-l-[3px] ${accents[i % accents.length]} hover:shadow-md hover:shadow-warm/10 dark:hover:shadow-nebula/5 transition-all duration-500 glass-card glow-border`}
+            className={`rounded-card p-6 bg-surface dark:bg-cosmos-card border border-warm/15 dark:border-cosmos-border border-l-[3px] ${accents[i % accents.length]} hover:shadow-md hover:shadow-warm/10 dark:hover:shadow-nebula/5 transition-all duration-500 glass-card glow-border relative group`}
           >
-            <p className="text-sm text-slate dark:text-cosmos-text font-sans font-light leading-relaxed">{t.text}</p>
+            <p className="text-sm text-slate dark:text-cosmos-text font-sans font-light leading-relaxed pr-6">{t.text}</p>
             <p className="text-[10px] text-taupe/50 dark:text-cosmos-muted/50 font-sans mt-3 tracking-wide">{t.date}</p>
+            {isAdmin && (
+              <button onClick={() => deleteThought(t.id)} className="absolute top-4 right-4 p-1 rounded-btn opacity-0 group-hover:opacity-100 text-taupe/30 hover:text-red-400 transition-all">
+                <FiTrash2 className="w-3 h-3" />
+              </button>
+            )}
           </motion.div>
         ))}
 

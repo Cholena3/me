@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
 import { useApp } from '../store'
-import { FiPlus } from 'react-icons/fi'
+import { FiPlus, FiTrash2 } from 'react-icons/fi'
 
 export default function MemoryTimeline() {
-  const { memories, setShowAddMemory } = useApp()
+  const { memories, setShowAddMemory, deleteMemory, isAdmin } = useApp()
 
   return (
     <section id="memories" className="py-32 px-8 max-w-3xl mx-auto">
@@ -39,10 +39,15 @@ export default function MemoryTimeline() {
               className="relative pl-12"
             >
               <div className="absolute left-0 top-2 w-[11px] h-[11px] rounded-full border-2 border-rose dark:border-nebula bg-base dark:bg-cosmos dark:glow-accent" />
-              <div className="bg-surface dark:bg-transparent rounded-card p-5 border border-warm/10 dark:border-transparent glass-card glow-border">
+              <div className="bg-surface dark:bg-transparent rounded-card p-5 border border-warm/10 dark:border-transparent glass-card glow-border relative group">
                 <p className="text-[10px] tracking-[0.2em] text-taupe dark:text-cosmos-muted uppercase font-sans mb-3">{m.date}</p>
                 <h3 className="font-serif text-lg text-slate-dark dark:text-cosmos-text mb-2">{m.title}</h3>
                 <p className="text-sm text-slate dark:text-cosmos-muted font-sans font-light leading-relaxed">{m.text}</p>
+                {isAdmin && (
+                  <button onClick={() => deleteMemory(m.id)} className="absolute top-3 right-3 p-1 rounded-btn opacity-0 group-hover:opacity-100 text-taupe/30 hover:text-red-400 transition-all">
+                    <FiTrash2 className="w-3 h-3" />
+                  </button>
+                )}
               </div>
             </motion.div>
           ))}
